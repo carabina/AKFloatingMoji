@@ -5,3 +5,4 @@ AKFloatingMoji with UIPreviewInteraction - Swift 3 - iOS 10
 
 ![Example Image](https://raw.githubusercontent.com/ashishkakkad8/AKFloatingMoji/master/AKFloatingMoji/AKFloatingMoji.gif)
 
+[Reference From Apple Sample Code](https://developer.apple.com/library/prerelease/content/samplecode/AppChat/Introduction/Intro.html)
