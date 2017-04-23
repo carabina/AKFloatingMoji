@@ -131,14 +131,14 @@ class AKFloatingMojiViewController : UIViewController {
         var adjustment = 0.0
         
         if normalizedY < NormalizedThresholds.yTop {
-            baseRotation = M_PI
-            adjustment = -M_PI_4
+            baseRotation = Double.pi
+            adjustment = -Double.pi / 4
         }
         else if normalizedY > NormalizedThresholds.yBottom {
-            adjustment = M_PI_4
+            adjustment = Double.pi / 4
         }
         else {
-            adjustment = M_PI_2
+            adjustment = Double.pi / 2
         }
         
         if normalizedX < NormalizedThresholds.xMinCenter {
@@ -216,8 +216,8 @@ class AKFloatingMojiViewController : UIViewController {
         let arcRadius = arcSize + overexpansionDistance
         
         func arcVectorFromCenter(for normalizedPosition: Double) -> CGVector {
-            let dx = CGFloat(sin(normalizedPosition * M_PI - M_PI_2)) * arcRadius
-            let dy = CGFloat(sin(normalizedPosition * M_PI + M_PI)) * arcRadius
+            let dx = CGFloat(sin(normalizedPosition * Double.pi - Double.pi / 2)) * arcRadius
+            let dy = CGFloat(sin(normalizedPosition * Double.pi + Double.pi)) * arcRadius
             return CGVector(dx: dx, dy: dy)
         }
         

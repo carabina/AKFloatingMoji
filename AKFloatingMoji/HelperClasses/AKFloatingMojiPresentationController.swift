@@ -21,18 +21,18 @@ class AKFloatingMojiPresentationController: UIPresentationController {
         blurView.frame = containerView!.bounds
         containerView!.insertSubview(blurView, at: 0)
         
-        presentedViewController.transitionCoordinator()?.animate(alongsideTransition: { _ in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.blurView.effect = UIBlurEffect(style: .light)
         })
     }
     
     override func dismissalTransitionWillBegin() {
-        presentedViewController.transitionCoordinator()?.animate(alongsideTransition: { _ in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { _ in
             self.blurView.effect = nil
         })
     }
     
-    override func frameOfPresentedViewInContainerView() -> CGRect {
+    override var frameOfPresentedViewInContainerView: CGRect {
         return containerView!.bounds
     }
 }

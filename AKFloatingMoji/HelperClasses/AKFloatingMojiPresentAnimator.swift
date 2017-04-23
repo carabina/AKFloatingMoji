@@ -14,18 +14,18 @@ private enum AnimationParameters {
 }
 
 class AKFloatingMojiPresentAnimator: NSObject, UIViewControllerAnimatedTransitioning {    
-    func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return AnimationParameters.duration
     }
     
-    func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        if let replyView = transitionContext.view(forKey: UITransitionContextToViewKey) {
-            transitionContext.containerView().addSubview(replyView)
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        if let replyView = transitionContext.view(forKey: .to) {
+            transitionContext.containerView.addSubview(replyView)
             replyView.layoutIfNeeded()
             replyView.alpha = 1.0
         }
         
-        let replyViewController = transitionContext.viewController(forKey: UITransitionContextToViewControllerKey) as! AKFloatingMojiViewController
+        let replyViewController = transitionContext.viewController(forKey: .to) as! AKFloatingMojiViewController
         
         let animations = {
             replyViewController.isExpanded = true
@@ -37,14 +37,14 @@ class AKFloatingMojiPresentAnimator: NSObject, UIViewControllerAnimatedTransitio
         
         replyViewController.isExpanded = false
         
-        if transitionContext.isAnimated() {
-            let duration = transitionDuration(transitionContext)
+        if transitionContext.isAnimated {
+            let duration = transitionDuration(using: transitionContext)
             let runAnimations = {
                 UIView.animate(withDuration: duration, delay: 0, usingSpringWithDamping: AnimationParameters.damping, initialSpringVelocity: 0, options: [], animations: animations, completion: completion)
             }
-            if transitionContext.isInteractive() {
+            if transitionContext.isInteractive {
                 UIView.animate(withDuration: duration, delay: 0, options: [], animations: {}, completion: { (finished) in
-                    if transitionContext.transitionWasCancelled() {
+                    if transitionContext.transitionWasCancelled {
                         completion(false)
                     }
                     else {

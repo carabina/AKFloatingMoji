@@ -14,15 +14,15 @@ private enum AnimationParameters {
 }
 
 class AKFloatingMojiDismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {    
-    func transitionDuration(_ transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
+    func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return AnimationParameters.duration
     }
     
-    func animateTransition(_ transitionContext: UIViewControllerContextTransitioning) {
-        let replyViewController = transitionContext.viewController(forKey: UITransitionContextFromViewControllerKey) as! AKFloatingMojiViewController
+    func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let replyViewController = transitionContext.viewController(forKey: .from) as! AKFloatingMojiViewController
         
         let animations: () -> ()
-        if transitionContext.isInteractive() {
+        if transitionContext.isInteractive {
             animations = {
                 replyViewController.view.alpha = 0.0
             }
@@ -37,9 +37,9 @@ class AKFloatingMojiDismissAnimator: NSObject, UIViewControllerAnimatedTransitio
             transitionContext.completeTransition(true)
         }
         
-        if transitionContext.isAnimated() {
-            let duration = transitionDuration(transitionContext)
-            if transitionContext.isInteractive() {
+        if transitionContext.isAnimated {
+            let duration = transitionDuration(using: transitionContext)
+            if transitionContext.isInteractive {
                 UIView.animate(withDuration: duration, delay: 0, options: [], animations: animations, completion: completion)
             }
             else {
