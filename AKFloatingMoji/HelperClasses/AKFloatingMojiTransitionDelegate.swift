@@ -28,7 +28,7 @@ class AKFloatingMojiTransitionDelegate: NSObject, UIViewControllerTransitioningD
         return AKFloatingMojiPresentAnimator()
     }
     
-    private func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return AKFloatingMojiDismissAnimator()
     }
     
@@ -36,7 +36,7 @@ class AKFloatingMojiTransitionDelegate: NSObject, UIViewControllerTransitioningD
         return AKFloatingMojiPresentationController(presentedViewController: presented, presenting: presenting)
     }
     
-    func interactionController(forPresentation animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
         if presentationIsInteractive {
             currentInteractionController = AKFloatingMojiInteractionController()
             return currentInteractionController

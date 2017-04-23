@@ -9,12 +9,12 @@
 import UIKit
 
 class AKFloatingMojiButton : UIButton {
-    var action: ((button: UIButton) -> Void)?
+    var action: ((_ button: UIButton) -> Void)?
     
     var pulses = false
     private var isPulsing = false
     
-    convenience init(title: String, pulses: Bool = false, action: ((button: UIButton) -> Void)? = nil) {
+    convenience init(title: String, pulses: Bool = false, action: ((_ button: UIButton) -> Void)? = nil) {
         self.init(frame: CGRect.zero)
         self.setTitle(title, for: [])
         self.titleLabel?.font = UIFont.systemFont(ofSize: 50)
@@ -26,7 +26,7 @@ class AKFloatingMojiButton : UIButton {
     }
     
     func handleTap() {
-        action?(button: self)
+        action?(self)
     }
     
     override var isHighlighted: Bool {

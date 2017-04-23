@@ -11,10 +11,10 @@ import UIKit
 class AKFloatingMojiVC : UIViewController, AKFloatingMojiDelegate  {
 
     @IBOutlet var lblMoji: UILabel!
-    private let floatingMojiButton = AKFloatingMojiButton(title: "😍", pulses: true)
-    private var previewInteraction: UIPreviewInteraction!
-    private var floatingMojiController = AKFloatingMojiViewController()
-    private var floatingMojiControllerIsPresented: Bool {
+    fileprivate let floatingMojiButton = AKFloatingMojiButton(title: "😍", pulses: true)
+    fileprivate var previewInteraction: UIPreviewInteraction!
+    fileprivate var floatingMojiController = AKFloatingMojiViewController()
+    fileprivate var floatingMojiControllerIsPresented: Bool {
         return presentedViewController != nil
     }
     
